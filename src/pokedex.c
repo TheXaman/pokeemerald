@@ -3554,61 +3554,63 @@ static void Task_HandleInfoScreenInput(u8 taskId)
         PlaySE(SE_PC_OFF);
         return;
     }
-    // if (JOY_NEW(A_BUTTON))
-    // {
-    //     switch (sPokedexView->selectedScreen)
-    //     {
-    //     case AREA_SCREEN:
-    //         BeginNormalPaletteFade(0xFFFFFFEB, 0, 0, 16, RGB_BLACK);
-    //         sPokedexView->screenSwitchState = 1;
-    //         gTasks[taskId].func = Task_SwitchScreensFromInfoScreen;
-    //         PlaySE(SE_PIN);
-    //         break;
-    //     case CRY_SCREEN:
-    //         BeginNormalPaletteFade(0xFFFFFFEB, 0, 0, 0x10, RGB_BLACK);
-    //         sPokedexView->screenSwitchState = 2;
-    //         gTasks[taskId].func = Task_SwitchScreensFromInfoScreen;
-    //         PlaySE(SE_PIN);
-    //         break;
-    //     case SIZE_SCREEN:
-    //         if (!sPokedexListItem->owned)
-    //         {
-    //             PlaySE(SE_FAILURE);
-    //         }
-    //         else
-    //         {
-    //             BeginNormalPaletteFade(0xFFFFFFEB, 0, 0, 0x10, RGB_BLACK);
-    //             sPokedexView->screenSwitchState = 3;
-    //             gTasks[taskId].func = Task_SwitchScreensFromInfoScreen;
-    //             PlaySE(SE_PIN);
-    //         }
-    //         break;
-    //     case CANCEL_SCREEN:
-    //         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
-    //         gTasks[taskId].func = Task_ExitInfoScreen;
-    //         PlaySE(SE_PC_OFF);
-    //         break;
-    //     }
-    //     return;
-    // }
-    // if ((JOY_NEW(DPAD_LEFT)
-    //  || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
-    //  && sPokedexView->selectedScreen > 0)
-    // {
-    //     sPokedexView->selectedScreen--;
-    //     HighlightScreenSelectBarItem(sPokedexView->selectedScreen, 0xD);
-    //     PlaySE(SE_DEX_PAGE);
-    //     return;
-    // }
-    // if ((JOY_NEW(DPAD_RIGHT)
-    //  || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
-    //  && sPokedexView->selectedScreen < CANCEL_SCREEN)
-    // {
-    //     sPokedexView->selectedScreen++;
-    //     HighlightScreenSelectBarItem(sPokedexView->selectedScreen, 0xD);
-    //     PlaySE(SE_DEX_PAGE);
-    //     return;
-    // }
+    /*
+    if (JOY_NEW(A_BUTTON))
+    {
+        switch (sPokedexView->selectedScreen)
+        {
+        case AREA_SCREEN:
+            BeginNormalPaletteFade(0xFFFFFFEB, 0, 0, 16, RGB_BLACK);
+            sPokedexView->screenSwitchState = 1;
+            gTasks[taskId].func = Task_SwitchScreensFromInfoScreen;
+            PlaySE(SE_PIN);
+            break;
+        case CRY_SCREEN:
+            BeginNormalPaletteFade(0xFFFFFFEB, 0, 0, 0x10, RGB_BLACK);
+            sPokedexView->screenSwitchState = 2;
+            gTasks[taskId].func = Task_SwitchScreensFromInfoScreen;
+            PlaySE(SE_PIN);
+            break;
+        case SIZE_SCREEN:
+            if (!sPokedexListItem->owned)
+            {
+                PlaySE(SE_FAILURE);
+            }
+            else
+            {
+                BeginNormalPaletteFade(0xFFFFFFEB, 0, 0, 0x10, RGB_BLACK);
+                sPokedexView->screenSwitchState = 3;
+                gTasks[taskId].func = Task_SwitchScreensFromInfoScreen;
+                PlaySE(SE_PIN);
+            }
+            break;
+        case CANCEL_SCREEN:
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+            gTasks[taskId].func = Task_ExitInfoScreen;
+            PlaySE(SE_PC_OFF);
+            break;
+        }
+        return;
+    }
+    if (((JOY_NEW(DPAD_LEFT))
+     || ((JOY_NEW(L_BUTTON)) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
+     && sPokedexView->selectedScreen > 0)
+    {
+        sPokedexView->selectedScreen--;
+        HighlightScreenSelectBarItem(sPokedexView->selectedScreen, 0xD);
+        PlaySE(SE_DEX_PAGE);
+        return;
+    }
+    if (((JOY_NEW(DPAD_RIGHT))
+     || ((JOY_NEW(R_BUTTON)) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
+     && sPokedexView->selectedScreen < CANCEL_SCREEN)
+    {
+        sPokedexView->selectedScreen++;
+        HighlightScreenSelectBarItem(sPokedexView->selectedScreen, 0xD);
+        PlaySE(SE_DEX_PAGE);
+        return;
+    }
+    */
 
     if ((JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)))
     {
