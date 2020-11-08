@@ -4965,13 +4965,23 @@ static u16 CreateSizeScreenTrainerPic(u16 species, s16 x, s16 y, s8 paletteSlot)
 bool8  SpeciesCanLearnLvlUpMove(u16 species, u16 move) //Move search PokedexPlus HGSS_Ui
 {
     u16 j;
-    for (j = 0; j < MAX_LEVEL_UP_MOVES && gLevelUpLearnsets[species][j] != LEVEL_UP_END; j++)
-    {
-        if (move == (gLevelUpLearnsets[species][j] & LEVEL_UP_MOVE_ID))
+    #if defined (BATTLE_ENGINE) || defined (POKEMON_EXPANSION)
+        for (j = 0; j < MAX_LEVEL_UP_MOVES && gLevelUpLearnsets[species][j].move != LEVEL_UP_END; j++)
         {
-            return TRUE;
+            if (move == (gLevelUpLearnsets[species][j].move & LEVEL_UP_MOVE_ID))
+            {
+                return TRUE;
+            }
         }
-    }
+    #else
+        for (j = 0; j < MAX_LEVEL_UP_MOVES && gLevelUpLearnsets[species][j] != LEVEL_UP_END; j++)
+        {
+            if (move == (gLevelUpLearnsets[species][j] & LEVEL_UP_MOVE_ID))
+            {
+                return TRUE;
+            }
+        }
+    #endif
     return FALSE;
 }
 
@@ -6318,13 +6328,18 @@ static void PrintMoveNameAndInfo(u8 taskId, bool8 toggle)
         move = sStatsMovesLevelUp[sPokedexView->moveSelected - numEggMoves];
         StringCopy(gStringVar3, gMoveNames[move]);
         StringCopy(gStringVar4, gMoveDescriptionPointers[(move - 1)]);
-        //Calculate level of the move
-        while (((gLevelUpLearnsets[species][(selected-numEggMoves)] & LEVEL_UP_MOVE_LV) != (level << 9)) && level < 0xFF)
-        {
-            level++;
-            if (gLevelUpLearnsets[species][(selected-numEggMoves)] == LEVEL_UP_END)
-                level = 0xFF;
-        }
+        
+        #if defined (BATTLE_ENGINE) || defined (POKEMON_EXPANSION)
+            level = gLevelUpLearnsets[species][(selected-numEggMoves)].level;
+        #else
+            //Calculate level of the move
+            while (((gLevelUpLearnsets[species][(selected-numEggMoves)] & LEVEL_UP_MOVE_LV) != (level << 9)) && level < 0xFF)
+            {
+                level++;
+                if (gLevelUpLearnsets[species][(selected-numEggMoves)] == LEVEL_UP_END)
+                    level = 0xFF;
+            }
+        #endif
         ConvertIntToDecimalStringN(gStringVar1, level, STR_CONV_MODE_LEFT_ALIGN, 3); //Move learn lvl
         PrintInfoScreenTextSmall(gText_Stats_MoveLevel, moves_x + 113, moves_y + 3); //Level text
         PrintInfoScreenTextSmall(gStringVar1, moves_x + 113, moves_y + 14); //Print level
