@@ -46,4 +46,11 @@ void CalcTimeDifference(struct Time *result, struct Time *t1, struct Time *t2);
 u32 RtcGetMinuteCount(void);
 u32 RtcGetLocalDayCount(void);
 
+//day_night
+void RtcGetTime(struct SiiRtcInfo *rtc);
+void RtcGetRawInfoFast(struct SiiRtcInfo *rtc);
+void RtcCalcLocalTimeFast(void);
+u32 GetTotalMinutes(struct Time *time);
+u32 GetTotalSeconds(struct Time *time);
+
 #endif // GUARD_RTC_UTIL_H

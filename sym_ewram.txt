@@ -44,6 +44,7 @@
 	.include "src/event_data.o"
 	.include "src/start_menu.o"
 	.include "src/tileset_anims.o"
+	.include "src/day_night.o"
 	.include "src/palette.o"
 	.include "src/sound.o"
 	.include "src/battle_anim.o"

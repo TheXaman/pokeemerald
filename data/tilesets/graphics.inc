@@ -1729,3 +1729,11 @@ gTilesetPalettes_UnionRoom:: @ 8395678
 	.align 2
 gTilesetTiles_UnionRoom:: @ 8395878
 	.incbin "data/tilesets/secondary/union_room/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalOverride_General02:: @ day_night
+	.incbin "data/tilesets/primary/general/palettes/02_over.gbapal"
+
+	.align 2
+gTilesetPalOverride_General07:: @ day_night
+	.incbin "data/tilesets/primary/general/palettes/07_over.gbapal"

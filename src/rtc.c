@@ -1,7 +1,10 @@
 #include "global.h"
+#include "event_data.h" //day_night
 #include "rtc.h"
 #include "string_util.h"
 #include "text.h"
+#include "util.h" //day_night
+#include "constants/flags.h" //day_night
 
 // iwram bss
 static u16 sErrorStatus;
@@ -131,6 +134,23 @@ void RtcGetInfo(struct SiiRtcInfo *rtc)
         RtcGetRawInfo(rtc);
 }
 
+//day_night
+void RtcGetInfoFast(struct SiiRtcInfo *rtc)
+{
+    if (sErrorStatus & RTC_ERR_FLAG_MASK)
+        *rtc = sRtcDummy;
+    else
+        RtcGetRawInfoFast(rtc);
+}
+
+//day_night
+void RtcGetTime(struct SiiRtcInfo *rtc)
+{
+    RtcDisableInterrupts();
+    SiiRtcGetTime(rtc);
+    RtcRestoreInterrupts();
+}
+
 void RtcGetDateTime(struct SiiRtcInfo *rtc)
 {
     RtcDisableInterrupts();
@@ -149,6 +169,13 @@ void RtcGetRawInfo(struct SiiRtcInfo *rtc)
 {
     RtcGetStatus(rtc);
     RtcGetDateTime(rtc);
+}
+
+//day_night
+void RtcGetRawInfoFast(struct SiiRtcInfo *rtc)
+{
+    RtcGetStatus(rtc);
+    RtcGetTime(rtc);
 }
 
 u16 RtcCheckInfo(struct SiiRtcInfo *rtc)
@@ -293,6 +320,13 @@ void RtcCalcLocalTime(void)
     RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
 }
 
+//day_night
+void RtcCalcLocalTimeFast(void)
+{
+    RtcGetInfoFast(&sRtc);
+    RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
+}
+
 void RtcInitLocalTimeOffset(s32 hour, s32 minute)
 {
     RtcCalcLocalTimeOffset(0, hour, minute, 0);
@@ -344,3 +378,17 @@ u32 RtcGetLocalDayCount(void)
 {
     return RtcGetDayCount(&sRtc);
 }
+
+
+//day_night
+u32 GetTotalMinutes(struct Time *time)
+{
+    return time->days * 1440 + time->hours * 60 + time->minutes;
+}
+
+//day_night
+u32 GetTotalSeconds(struct Time *time)
+{
+    return time->days * 86400 + time->hours * 3600 + time->minutes * 60 + time->seconds;
+}
+

@@ -320,4 +320,7 @@ u8 SpriteTileAllocBitmapOp(u16 bit, u8 op);
 void ClearSpriteCopyRequests(void);
 void ResetAffineAnimData(void);
 
+//day_night
+u8 LoadSpritePaletteDayNight(const struct SpritePalette *palette);
+
 #endif //GUARD_SPRITE_H
