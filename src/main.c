@@ -5,6 +5,7 @@
 #include "link_rfu.h"
 #include "librfu.h"
 #include "m4a.h"
+#include "mgba.h"
 #include "bg.h"
 #include "rtc.h"
 #include "scanline_effect.h"
@@ -120,6 +121,9 @@ void AgbMain()
     ClearDma3Requests();
     ResetBgs();
     SetDefaultFontsPointer();
+    #if DEBUGGING
+        mgba_open();
+    #endif
     InitHeap(gHeap, HEAP_SIZE);
 
     gSoftResetDisabled = FALSE;
