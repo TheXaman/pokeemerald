@@ -890,7 +890,7 @@ u16 RenderText(struct TextPrinter *textPrinter)
     switch (textPrinter->state)
     {
     case 0:
-        if ((JOY_HELD(A_BUTTON | B_BUTTON)) && subStruct->hasPrintBeenSpedUp)
+        if (subStruct->hasPrintBeenSpedUp) //no need for holding a or b for faster text
             textPrinter->delayCounter = 0;
 
         if (textPrinter->delayCounter && textPrinter->textSpeed)
