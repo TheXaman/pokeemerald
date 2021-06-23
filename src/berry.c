@@ -14,6 +14,7 @@
 #include "constants/berry.h"
 #include "constants/event_object_movement.h"
 #include "constants/items.h"
+#include "constants/map_groups.h"
 
 static u32 GetEnigmaBerryChecksum(struct EnigmaBerry *enigmaBerry);
 static bool32 BerryTreeGrow(struct BerryTree *tree);
