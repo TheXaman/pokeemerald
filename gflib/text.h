@@ -329,7 +329,8 @@ struct TextPrinter
     u8 delayCounter;
     u8 scrollDistance;
     u8 minLetterSpacing;  // 0x20
-    bool8 japanese;
+    bool8 japanese:7;
+    u8 instant:1; //tx_optionsPlus
 };
 
 struct FontInfo

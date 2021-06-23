@@ -565,6 +565,7 @@ struct BattleHealthboxInfo
 struct BattleBarInfo
 {
     u8 healthboxSpriteId;
+    u8 oddFrame;
     s32 maxValue;
     s32 oldValue;
     s32 receivedValue;
