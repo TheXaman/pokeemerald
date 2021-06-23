@@ -3102,5 +3102,6 @@ extern const u8 gText_BlenderMaxSpeedRecord[];
 extern const u8 gText_234Players[];
 
 extern const u8 gText_AshQty[];
+extern const u8 gText_ThrowInPremierBalls[];
 
 #endif // GUARD_STRINGS_H
