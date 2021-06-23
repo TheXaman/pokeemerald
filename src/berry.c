@@ -1215,6 +1215,10 @@ static u8 CalcBerryYieldInternal(u16 max, u16 min, u8 water)
     u32 randMax;
     u32 rand;
     u32 extraYield;
+    u16 currentMap = ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum);
+
+    if (currentMap == MAP_ROUTE119 || currentMap == MAP_ROUTE120 || currentMap == MAP_ROUTE123)
+        return max;
 
     if (water == 0)
         return min;
