@@ -1198,10 +1198,17 @@ static void PrintStringTMCaseOnWindow3(void)
 
 static void DrawMoveInfoUIMarkers(void)
 {
-    blit_move_info_icon(4, 19, 0, 0);
-    blit_move_info_icon(4, 20, 0, 12);
-    blit_move_info_icon(4, 21, 0, 24);
-    blit_move_info_icon(4, 22, 0, 36);
+#ifndef POKEMON_EXPANSION
+    BlitMenuInfoIcon(4, 19, 0, 0); // "Type" sprite
+    BlitMenuInfoIcon(4, 20, 0, 12); // "Power" sprite
+    BlitMenuInfoIcon(4, 21, 0, 24); // "Accuracy" sprite
+    BlitMenuInfoIcon(4, 22, 0, 36); // "PP" sprite
+#else
+    BlitMenuInfoIcon(4, 20, 0, 0); // "Type" sprite
+    BlitMenuInfoIcon(4, 21, 0, 12); // "Power" sprite
+    BlitMenuInfoIcon(4, 22, 0, 24); // "Accuracy" sprite
+    BlitMenuInfoIcon(4, 23, 0, 36); // "PP" sprite
+#endif
     CopyWindowToVram(4, 2);
 }
 
@@ -1223,7 +1230,7 @@ static void TMCase_MoveCursor_UpdatePrintedTMInfo(u16 itemId)
     else
     {
         move = ItemIdToBattleMoveId(itemId);
-        blit_move_info_icon(5, gBattleMoves[move].type + 1, 0, 0);
+        BlitMenuInfoIcon(5, gBattleMoves[move].type + 1, 0, 0);
         if (gBattleMoves[move].power < 2)
             str = gText_ThreeDashes;
         else
